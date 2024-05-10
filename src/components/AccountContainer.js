@@ -1,13 +1,18 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
+/* eslint-enable no-unused-vars */
 import TransactionsList from "./TransactionsList";
 import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
+import SortTransactions from "./SortTransactions";
 
-function AccountContainer() {
+function AccountContainer(
+) {
   const [transactions, setTransactions] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const getTransactions = () => {
+  const getTransactions = (
+) => {
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -20,12 +25,12 @@ function AccountContainer() {
       })
       .catch((error) => console.error(error));
   };
- 
+
   useEffect(() => {
     getTransactions();
   }, []);
 
-    const handleFormSubmit = async (newTransaction) => {
+  const handleFormSubmit = async (newTransaction) => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -44,20 +49,28 @@ function AccountContainer() {
   const handleSearch = (term) => {
     setSearchTerm(term);
 
-    setTransactions((prevTransactions) => {
-      return transactions.filter((transaction) =>
-        transaction.description.toLowerCase().includes(term.toLowerCase())
+    setTransactions((transactions) => {
+      return transactions.filter(
+        (transaction) =>
+          transaction.description.toLowerCase().includes(term.toLowerCase())
       );
     });
   };
 
+  console.log("Transactions:", transactions);
+  
   return (
     <div>
       <Search searchTerm={searchTerm} setSearchTerm={handleSearch} />
       <AddTransactionForm onFormSubmit={handleFormSubmit} />
+      <SortTransactions
+        transactions={transactions}
+        setTransactions={setTransactions}
+      />
       <TransactionsList transactions={transactions} />
     </div>
   );
 }
 
 export default AccountContainer;
+
