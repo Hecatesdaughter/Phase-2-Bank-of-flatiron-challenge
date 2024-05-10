@@ -3,12 +3,11 @@ import TransactionsList from "./TransactionsList";
 import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
 
-function AccountContainer(
-) {
+function AccountContainer() {
   const [transactions, setTransactions] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const getTransactions = (
-) => {
+  const getTransactions = () => {
     const requestOptions = {
       method: "GET",
       redirect: "follow",
@@ -21,8 +20,12 @@ function AccountContainer(
       })
       .catch((error) => console.error(error));
   };
+ 
+  useEffect(() => {
+    getTransactions();
+  }, []);
 
-  const handleFormSubmit = async (newTransaction) => {
+    const handleFormSubmit = async (newTransaction) => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -38,16 +41,20 @@ function AccountContainer(
     }
   };
 
-  useEffect(() => {
-    getTransactions();
-  }, []);
+  const handleSearch = (term) => {
+    setSearchTerm(term);
+
+    setTransactions((prevTransactions) => {
+      return transactions.filter((transaction) =>
+        transaction.description.toLowerCase().includes(term.toLowerCase())
+      );
+    });
+  };
 
   return (
     <div>
-      <Search />
-      <AddTransactionForm
-        onFormSubmit={handleFormSubmit}
-      />
+      <Search searchTerm={searchTerm} setSearchTerm={handleSearch} />
+      <AddTransactionForm onFormSubmit={handleFormSubmit} />
       <TransactionsList transactions={transactions} />
     </div>
   );

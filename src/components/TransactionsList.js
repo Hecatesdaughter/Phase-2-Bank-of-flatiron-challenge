@@ -2,6 +2,14 @@ import React from "react";
 import Transaction from "./Transaction";
 
 function TransactionsList({ transactions }) {
+  if (transactions.length === 0) {
+    return (
+      <div>
+        <p>No transactions found.</p>
+      </div>
+    );
+  }
+
   return (
     <table className="ui celled striped padded table">
       <tbody>

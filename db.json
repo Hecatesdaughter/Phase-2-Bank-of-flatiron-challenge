@@ -125,6 +125,27 @@
       "category": "hfhg",
       "amount": 0.04,
       "id": 18
+    },
+    {
+      "date": "",
+      "description": "",
+      "category": "",
+      "amount": null,
+      "id": 19
+    },
+    {
+      "date": "",
+      "description": "fjidvji",
+      "category": "hfhg",
+      "amount": 0.01,
+      "id": 20
+    },
+    {
+      "date": "2024-05-03",
+      "description": "fjidvji",
+      "category": "hfhg",
+      "amount": 0.01,
+      "id": 21
     }
   ]
 }
