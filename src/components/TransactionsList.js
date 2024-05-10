@@ -19,17 +19,15 @@ function TransactionsList({ transactions }) {
             <h3 className="ui center aligned header">Amount</h3>
           </th>
         </tr>
-       {transactions.map((transaction) => {
-          return (
-            <Transaction
-              key= {transaction.id}
-              date= {transaction.date}
-              description= {transaction.description}
-              category= {transaction.category}
-              amount=  {transaction.amount}
-             />
-          )
-       })};
+        {transactions.map((transaction) => (
+          <Transaction
+            key={transaction.id}
+            date={transaction.date}
+            description={transaction.description}
+            category={transaction.category}
+            amount={transaction.amount}
+          />
+        ))}
       </tbody>
     </table>
   );
