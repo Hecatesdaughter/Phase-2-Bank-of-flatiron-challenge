@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-/* eslint-enable no-unused-vars */
+
 import TransactionsList from "./TransactionsList";
 import Search from "./Search";
 import AddTransactionForm from "./AddTransactionForm";
@@ -58,7 +57,7 @@ function AccountContainer(
   };
 
   console.log("Transactions:", transactions);
-  
+
   return (
     <div>
       <Search searchTerm={searchTerm} setSearchTerm={handleSearch} />
